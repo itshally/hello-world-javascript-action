@@ -1,0 +1,12 @@
+# testing to auto-generate a file
+name: 'Create index.html'
+description: 'Creating an index.html file for the root repository'
+on: # triggers the action
+  push: 
+    branches: 
+      - master
+    paths: 'index.html'
+jobs: # this is the workflow that runs
+  create:
+    runs-on: ubuntu-latest
+    name: Creating index.html
