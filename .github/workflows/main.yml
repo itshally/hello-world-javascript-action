@@ -22,7 +22,7 @@ jobs:
       - name: Get the output time
         run: echo "The time was ${{ steps.indexHTML.outputs.time }}"
       - name: Install node
-        run: actions/setup-node@v1
+        uses: actions/setup-node@v1
       - name: Installing NPM dependencies
         run: npm i
       - name: running node index.js
