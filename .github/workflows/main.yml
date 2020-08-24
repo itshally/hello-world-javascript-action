@@ -22,9 +22,9 @@ jobs:
         uses: actions/hello-world-javascript-action@v1
       - name: Get the output time
         run: echo "The time was ${{ steps.indexHTML.outputs.time }}"
+      - uses: actions/checkout@v1
       - name: Install node
         uses: actions/setup-node@v1
-        uses: actions/checkout@v1
       - name: Installing NPM dependencies
         run: npm i
       - name: running node index.js
