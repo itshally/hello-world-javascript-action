@@ -13,3 +13,17 @@ jobs:
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
+  index_html_file:
+    runs-on: ubuntu-latest
+    name: Create index.html file
+    steps:
+      - name: index.html action step
+        id: indexHTML
+      - name: Get the output time
+        run: echo "The time was ${{ steps.indexHTML.outputs.time }}"
+      - name: Install node
+        run: actions/setup-node@v1
+      - name: Installing NPM dependencies
+        run: npm i
+      - name: running node index.js
+        run: node index.js
