@@ -1,0 +1,18 @@
+# testing a file
+on: # triggers the action
+  push: 
+    branches: 
+      - master
+
+jobs: # this is the workflow that runs
+  index_html_file:
+    runs-on: ubuntu-latest
+    name: Create index.html file
+    steps:
+      - name: index.html action step
+        id: indexHTML
+        uses: actions/hello-world-javascript-action@master
+      - name: Get the output time
+        run: echo "The time was ${{ steps.indexHTML.outputs.time }}"
+      - run: npm i
+      - run: node index
