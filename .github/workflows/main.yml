@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: index.html action step
         id: indexHTML
+        uses: actions/hello-world-javascript-action@v1
       - name: Get the output time
         run: echo "The time was ${{ steps.indexHTML.outputs.time }}"
       - name: Install node
