@@ -11,10 +11,9 @@ jobs: # this is the workflow that runs
     steps:
       - name: index.html action step
         id: indexHTML
-        uses: actions/hello-world-javascript-action@master
       - name: Get the output time
         run: echo "The time was ${{ steps.indexHTML.outputs.time }}"
       - name: Installing dependencies
         run: npm i
       - name: running node index.js
-        run: node index
+        run: node ./index.js
