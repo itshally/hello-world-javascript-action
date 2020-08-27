@@ -1,31 +1,21 @@
-on: [push]
+name: Create index.file sample
+
+on:
+  issues:
+    types:
+      - opened
+      
 
 jobs:
-  # hello_world_job:
-  #   runs-on: ubuntu-latest
-  #   name: A job to say hello
-  #   steps:
-  #   - name: Hello world action step
-  #     id: hello
-  #     uses: actions/hello-world-javascript-action@v1
-  #     with:
-  #       who-to-greet: 'Hally'
-  #   # Use the output from the `hello` step
-  #   - name: Get the output time
-  #     run: echo "The time was ${{ steps.hello.outputs.time }}"
-  index_html_file:
+  open-issue:
     runs-on: ubuntu-latest
-    name: Create index.html file
     steps:
-      - name: index.html action step
-        id: indexHTML
-        uses: actions/hello-world-javascript-action@v1
-      - name: Get the output time
-        run: echo "The time was ${{ steps.indexHTML.outputs.time }}"
-      - uses: actions/checkout@v1
-      - name: Install node
-        uses: actions/setup-node@v1
-      - name: Installing NPM dependencies
-        run: npm i
-      - name: running node index.js
-        run: node index.js
+      - name: action step
+        env:
+          REPO: ${{ github.event.repository.name }}
+          OWNER: ${{ github.event.repository.owner.login }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          curl -s -X POST https://api.github.com/repos/$OWNER/$REPO/issues/$ISSUE_NUMBER/comments \
+          -d '{ "body" : "Hi there ${{ github.event.issue.user.login }}, we will check this issue."}'
+          -H "Authorization: Bearer ${{secrets.GITHUB_TOKEN}}"
