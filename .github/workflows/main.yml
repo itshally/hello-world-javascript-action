@@ -1,9 +1,9 @@
-name: Create index.file sample
+name: issues test for slack
 
 on:
   issues:
     types:
-      - opened
+      - [opened, deleted, closed]
       
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
           REPO: ${{ github.event.repository.name }}
           OWNER: ${{ github.event.repository.owner.login }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: |
-          curl -s -X POST https://api.github.com/repos/$OWNER/$REPO/issues/$ISSUE_NUMBER/comments \
-          -H "Authorization: Bearer ${{secrets.GITHUB_TOKEN}}" \
-          -d '{ "body" : "Hi there ${{ github.event.issue.user.login }}, we will check this issue."}'
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' 
+          ${{ secrets.SLACK_WEBHOOK }}
