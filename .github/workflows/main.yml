@@ -14,6 +14,8 @@ jobs:
           REPO: ${{ github.event.repository.name }}
           OWNER: ${{ github.event.repository.owner.login }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' ${{ secrets.SLACK_WEBHOOK }}
+          curl -X POST -H 'Content-type: application/json' --data '{"text":`$ISSUE_TITLE \n $ISSUE_BODY`}' ${{ secrets.SLACK_WEBHOOK }}
