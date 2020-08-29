@@ -2,8 +2,7 @@ name: issues test for slack
 
 on:
   issues:
-    types:
-      - [opened, deleted, closed]
+    types: [opened, deleted, closed]
       
 
 jobs:
